@@ -1,22 +1,24 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ServeStaticModule } from '@nestjs/serve-static';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ScribblesModule } from './scribbles/scribbles.module';
 import { join } from 'path';
-
-import { TodoitemsModule } from './todoitems/todoitems.module';
-
-const databaseUrl =
-  process.env.DATABASE_URL || 'mongodb://localhost:27017/test';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(databaseUrl),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      host: process.env.DB_HOST,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      url: 'mongodb://localhost:27017/shalomBoy', //process.env.DB_URL,
+      entities: [join(__dirname, '**/**.entity{.ts,.js}')],
+      synchronize: process.env.NODE_ENV === 'local' ? true : false,
     }),
-    TodoitemsModule,
+    ScribblesModule,
   ],
   controllers: [],
   providers: [],
 })
+
 export class AppModule {}
