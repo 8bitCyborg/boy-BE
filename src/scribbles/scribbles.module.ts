@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { ScribblesController } from './scribbles.controller';
 import { ScribblesService } from './scribbles.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Scribble } from './entities/scribble.entity';
+import { Scribbles } from './entities/scribble.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature( [Scribble]),
+    TypeOrmModule.forFeature( [Scribbles]),
   ],
   controllers: [ScribblesController],
   providers: [ScribblesService]

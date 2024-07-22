@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
-import { Scribble } from './entities/scribble.entity';
+import { Scribbles } from './entities/scribble.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ScribblesService {
   constructor(
-    @InjectRepository(Scribble)
-    private scribbleRepository: Repository<Scribble>,
+    @InjectRepository(Scribbles)
+    private scribbleRepository: Repository<Scribbles>,
   ){}
 
   async getAllScribbles(res: Response){
