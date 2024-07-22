@@ -11,7 +11,7 @@ import { join } from 'path';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      url: 'mongodb://localhost:27017/shalomBoy', //process.env.DB_URL,
+      url: process.env.DB_URL,
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: process.env.NODE_ENV === 'local' ? true : false,
     }),
